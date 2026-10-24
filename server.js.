@@ -44,3 +44,4 @@ app.post("/api/generate", async (req, res) => {
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`SK SONG AI yana aiki a port ${PORT}`);
 });
+// SK SONG AI backend
