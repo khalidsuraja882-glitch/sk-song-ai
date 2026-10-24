@@ -1,0 +1,46 @@
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json({ limit: "10mb" }));
+
+// Gwajin backend
+app.get("/", (req, res) => {
+  res.json({
+    app: "SK SONG AI",
+    status: "online",
+    message: "SK SONG AI backend yana aiki."
+  });
+});
+
+// Gwajin haɗin backend
+app.get("/api/health", (req, res) => {
+  res.json({
+    success: true,
+    message: "Backend yana aiki."
+  });
+});
+
+// Samar da waka
+app.post("/api/generate", async (req, res) => {
+  const { prompt } = req.body;
+
+  if (!prompt || !prompt.trim()) {
+    return res.status(400).json({
+      success: false,
+      message: "Ka rubuta bayanin wakar da kake son AI ta samar."
+    });
+  }
+
+  return res.status(503).json({
+    success: false,
+    message: "Har yanzu ba a haɗa AI Music API da ke samar da waƙa mai sauti ba."
+  });
+});
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`SK SONG AI yana aiki a port ${PORT}`);
+});
